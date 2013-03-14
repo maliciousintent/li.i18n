@@ -28,23 +28,25 @@ html(lang='en')
             h2
               | Upload and translate JSON Locale files. 
               a() Wut?
-
-    .container
-      .row-fluid
-        .span12
-          h3 Start here
-          p.center
-            | To begin, choose a file to translate from your computer: 
-            a#browse.btn.pull-right Browse...
-          input#file.hide(type='file', accept='application/json')
+            a#browse.btn.btn-warning.btn-large Browse...
+            input#file.hide(type='file', accept='application/json')
 
     .container-fluid    
       //- Hidden, show only after a file has been uploaded
       .row-fluid
         table#table.table(style='display:none;')
+          thead
+            th.span1
+              | Context
+            th.span5
+              | Original Text
+            th.span5
+              | Translated Text
+            th.span1
+              | Fuzzy?
+          tbody
 
     .container-fluid
-      hr
       footer
         p.tc &copy; 2013 
           a(href='http://www.plasticpanda.com/') plasticpanda.com 
@@ -54,7 +56,9 @@ html(lang='en')
           a(href='https://github.com/PlasticPanda/li.i18n') source code
 
     script(src='js/jquery.js')
+    script(src='js/jquery.autosize.js')
     script(src='js/bootstrap.js')
     script(src='js/objectstorage.js')
     script(src='js/string-format.js')
+    script(src='js/sugar.js')
     script(src='js/app.js')

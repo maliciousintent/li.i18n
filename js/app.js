@@ -1,7 +1,7 @@
 /*jshint browser:true, indent:2, laxcomma:true, eqnull:true, jquery:true, devel:true */
 
 $(function () {
-  var $table = $('#table').show();
+  var $table = $('#table');
   
   document.getElementById('browse').addEventListener('click', function () {
     document.getElementById('file').click();
@@ -9,13 +9,23 @@ $(function () {
   });
 
   var _createTable = function (data) {
+    $table.show().find('tbody').html('');
+
     Object.keys(data).forEach(function (ctx) {
-      $(('<tr>' + 
-          '<td class="span2"><strong>{0}</strong></td>' + 
-          '<td class="span4"><textarea readonly="readonly" class="input-block-level">{1}</textarea></td>' + 
-          '<td class="span4"><textarea class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
-          '<td class="span2"><input id="fuz-{4}" type="checkbox" value="{3}" /> <label for="fuz-{4}">Fuzzy</label></td>' + 
-         '</tr>').format(ctx, data[ctx].original, data[ctx].translated, data[ctx].fuzzy, parseInt(Math.random() * 10000, 10))).appendTo($table);
+      $(('<tr class="fuzzy-{3}">' + 
+          '<td class="span1">{0}</td>' + 
+          '<td class="span5"><textarea readonly="readonly" class="input-block-level">{1}</textarea></td>' + 
+          '<td class="span5"><textarea class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
+          '<td class="span1"><label class="checkbox"><input type="checkbox" value="{3}" /></label></td>' + 
+         '</tr>').format(ctx.spacify().capitalize(true), data[ctx].original, data[ctx].translated, data[ctx].fuzzy)).appendTo($table.find('tbody'));
+    });
+
+    $('html, body').animate({
+      scrollTop: $('.fullbar.dark').position().top + $('.fullbar.dark').outerHeight() - $('.navbar.navbar-fixed-top').outerHeight() - 10
+    }, 300);
+
+    $('textarea', $table).autosize({
+      append: '\n'
     });
   };
   
