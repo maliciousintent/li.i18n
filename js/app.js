@@ -14,7 +14,7 @@ $(function () {
     Object.keys(data).forEach(function (ctx) {
       $(('<tr class="fuzzy-{3}">' + 
           '<td class="span1">{0}</td>' + 
-          '<td class="span5"><textarea readonly="readonly" class="input-block-level">{1}</textarea></td>' + 
+          '<td class="span5"><p class="original">{1}</p></td>' + 
           '<td class="span5"><textarea class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
           '<td class="span1"><label class="checkbox"><input type="checkbox" value="{3}" /></label></td>' + 
          '</tr>').format(ctx.spacify().capitalize(true), data[ctx].original, data[ctx].translated, data[ctx].fuzzy)).appendTo($table.find('tbody'));
