@@ -160,23 +160,25 @@ p.preview
   margin-top -6px
   width 90px
 
-table.table
-  tr
-    td
-      border-top none
-      border-bottom 1px solid #DDD
-      padding-top 15px
-      &:first-child,
-      &:last-child
-        padding-top 30px
-      &:first-child
-        font-weight 700
-        font-size 15px
-        word-wrap break-word
-        word-break break-all
-      textarea
-        height 30px
-        transition height 0.3s ease
-    &.fuzzy-true
+.table-container
+  min-height 30px
+  table.table
+    tr
       td
-        background lighten(_yellow, 80%)
+        border-top none
+        border-bottom 1px solid #DDD
+        padding-top 15px
+        &:first-child,
+        &:last-child
+          padding-top 30px
+        &:first-child
+          font-weight 700
+          font-size 15px
+          word-wrap break-word
+          word-break break-all
+        textarea
+          height 30px
+          transition height 0.3s ease
+      &.fuzzy-true
+        td
+          background lighten(_yellow, 80%)
