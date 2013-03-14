@@ -1,0 +1,60 @@
+!!! 5
+html(lang='en')
+head
+    meta(charset='utf-8')
+    title i18n.li | Locale file editor for jade-i18n.js
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Locale file editor for jade-i18n.js')
+    meta(name='author', content='Plastic Panda')
+
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/bootstrap-responsive.min.css', rel='stylesheet')
+    style(type='text/css')
+      body {
+        padding-top: 100px;
+        padding-bottom: 40px;
+      }
+      
+      .header {
+        margin: auto;
+        width: 40%;
+      }
+      
+      .center {
+        text-align: center;
+      }
+  body
+    .container-fluid
+      .row-fluid
+        .span12
+          .header.center
+            
+            img(src='img/logo.jpg')
+            
+            h1 Hello, human
+            p.lead
+              | From this page you can upload and translate 
+              a(href='https://github.com/PlasticPanda/jade-i18n.js#jade-i18njs---static-i18-d-website-generator') jade-i18n.js
+              | -compatible JSON Locale files.
+      
+      .row-fluid
+        .span12
+          p
+
+          p.center
+            | To begin, choose a file to translate from your computer:
+            br
+            input(type='file') 
+            button.btn.btn-primary Begin translation &raquo;
+              
+
+      hr
+      footer
+        p.center &copy; 2013 
+          a(href='http://www.plasticpanda.com/') plasticpanda.com 
+          | | 
+          a(href='https://github.com/PlasticPanda/li.i18n') source code
+
+    script(src='../assets/js/jquery.js')
+    script(src='../assets/js/bootstrap.js')
+    script(src='../assets/js/app.js')
