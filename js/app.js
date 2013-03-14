@@ -26,8 +26,17 @@ $(function () {
     });
     
     $('.translation', $table).on('change', function removeFuzzy(e) {
+      $(e.target).parent('td').next().find('input[type="checkbox"]').trigger('click');
+    });
+    
+    $('input[type="checkbox"]', $table).on('change', function toggleFuzzy(e) {
       var $this = $(e.target);
-      $this.parent('td').next().find('input[type="checkbox"]').removeAttr('checked');
+      
+      if ($this.is(':checked')) {
+        $this.closest('tr').addClass('fuzzy-true');
+      } else {
+        $this.closest('tr').removeClass('fuzzy-true');
+      }
     });
 
     $('html, body').animate({
