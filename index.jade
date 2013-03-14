@@ -34,17 +34,22 @@ html(lang='en')
     .container-fluid    
       //- Hidden, show only after a file has been uploaded
       .row-fluid.table-container
-        table#table.table(style='display:none;')
-          thead
-            th.span1
-              | Context
-            th.span5
-              | Original Text
-            th.span5
-              | Translated Text
-            th.span1
-              | Fuzzy?
-          tbody
+        .table-hidden(style='display:none;')
+          table#table.table
+            thead
+              th.span1
+                | Context
+              th.span5
+                | Original Text
+              th.span5
+                | Translated Text
+              th#fuzzyTh.span1
+                | Fuzzy?
+            tbody
+              // eeh, vediamo un poco
+
+          button.btn.btn-large() Save
+          button.btn.btn-large.btn-primary() Download
 
     .container-fluid
       footer

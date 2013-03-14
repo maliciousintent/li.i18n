@@ -7,11 +7,24 @@ $(function () {
     document.getElementById('file').click();
     return false;
   });
+  
+  
+  // // Quick unfuzzy
+  // $table.find('#fuzzyTh').on('click', function () {
+  //   $table.find('.fuzzy-checkbox').each(function (i, e) {
+  //     e = $(e);
+  //     if (e.is(':checked')) {
+  //       e.trigger('click');
+  //     }
+  //   });
+  // });
+
 
   var _createTable = function (data) {
     var tabindex = 100;
     
-    $table.show().find('tbody').html('');
+    $('.table-hidden').show();
+    $table.find('tbody').html('');
 
     Object.keys(data).forEach(function (ctx) {
       var fuzzyChecked = (data[ctx].fuzzy === true) ? 'checked="checked"' : '';
@@ -20,7 +33,7 @@ $(function () {
           '<td class="span1">{0}</td>' + 
           '<td class="span5"><p class="original">{1}</p></td>' + 
           '<td class="span5"><textarea tabindex="{5}" class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
-          '<td class="span1"><label class="checkbox"><input type="checkbox" value="true" {4} /></label></td>' + 
+          '<td class="span1"><label class="checkbox"><input class="fuzzy-checkbox" type="checkbox" value="true" {4} /></label></td>' + 
          '</tr>').format(ctx.spacify().capitalize(true), data[ctx].original, data[ctx].translated, data[ctx].fuzzy, fuzzyChecked, tabindex)).appendTo($table.find('tbody'));
       tabindex++;
     });
@@ -98,7 +111,7 @@ $(function () {
   // Restore last save
   var saved = window.localStorage.getObject('trans');
   if (saved != null && !Object.equal(saved, {})) {
-    if (confirm('There is an autosaved version of your work.\nDo you want to restore it?')) {
+    if (confirm('Hey, there is an autosaved version of your work.\nDo you want to restore it?')) {
       _createTable(saved);
     } else {
       window.localStorage.setObject('trans', {});
@@ -115,7 +128,7 @@ $(function () {
       window.localStorage.setObject('trans', _getTable());
     }
     
-    setTimeout(autoSave, 60000);
+    setTimeout(autoSave, 10000);
   })();
   
 });
