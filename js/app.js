@@ -9,15 +9,25 @@ $(function () {
   });
 
   var _createTable = function (data) {
+    var tabindex = 100;
+    
     $table.show().find('tbody').html('');
 
     Object.keys(data).forEach(function (ctx) {
+      var fuzzyChecked = (data[ctx].fuzzy === true) ? 'checked="checked"' : '';
+      
       $(('<tr class="fuzzy-{3}">' + 
           '<td class="span1">{0}</td>' + 
           '<td class="span5"><p class="original">{1}</p></td>' + 
-          '<td class="span5"><textarea class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
-          '<td class="span1"><label class="checkbox"><input type="checkbox" value="{3}" /></label></td>' + 
-         '</tr>').format(ctx.spacify().capitalize(true), data[ctx].original, data[ctx].translated, data[ctx].fuzzy)).appendTo($table.find('tbody'));
+          '<td class="span5"><textarea tabindex="{5}" class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
+          '<td class="span1"><label class="checkbox"><input type="checkbox" value="true" {4} /></label></td>' + 
+         '</tr>').format(ctx.spacify().capitalize(true), data[ctx].original, data[ctx].translated, data[ctx].fuzzy, fuzzyChecked, tabindex)).appendTo($table.find('tbody'));
+      tabindex++;
+    });
+    
+    $('.translation', $table).on('change', function removeFuzzy(e) {
+      var $this = $(e.target);
+      $this.parent('td').next().find('input[type="checkbox"]').removeAttr('checked');
     });
 
     $('html, body').animate({
@@ -75,7 +85,7 @@ $(function () {
 
   // Restore last save
   var saved = window.localStorage.getObject('trans');
-  if (saved != null && saved != {}) {
+  if (saved != null && !Object.equal(saved, {})) {
     if (confirm('There is an autosaved version of your work.\nDo you want to restore it?')) {
       _createTable(saved);
     } else {
@@ -83,6 +93,9 @@ $(function () {
     }
   }
 
+  window.onbeforeunload = function () {
+    return null; // @TODO: @FIXME: Uncomment - 'If you close this page all your changes will be lost. Continue?';
+  };
 
   // Auto save
   (function autoSave() {
