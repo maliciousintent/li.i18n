@@ -16,7 +16,7 @@ $(function () {
   var _handleFileSelect = function (evt) {
     var file = evt.target.files[0];
 
-    if (!file || file.length > 500 * 1000 || file.type !== 'application/json' || file.name.indexOf('.json') === -1) {
+    if (!file || file.length > 500 * 1000 || file.name.indexOf('.json') === -1) {
       alert('I\'m sorry but the file format you have uploaded is not supported (or your browser is too old).');
       return;
     }
