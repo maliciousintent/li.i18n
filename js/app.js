@@ -166,6 +166,7 @@ $(function () {
   (function autoSave() {
     if ($table.is(':visible')) {
       window.localStorage.setObject('trans', _getTable());
+      $('#autoSaveDetails').html(new Date().toLocaleFormat());
     }
     
     setTimeout(autoSave, 10000);
