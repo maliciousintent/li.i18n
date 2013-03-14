@@ -151,8 +151,21 @@ p.preview span {
   font-size: 13px;
 }
 #browse {
-  margin-top: -6px;
-  width: 90px;
+  background: rgba(212,158,0,0.1);
+  border: 1px solid #d49e00;
+  color: #333;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 12px;
+  margin-top: 10px;
+  text-shadow: -1px -1px 1px rgba(255,255,255,0.4);
+  -webkit-box-shadow: 0 -1px 2px rgba(255,255,255,0.4), 0 1px 2px rgba(255,255,255,0.6), inset 0 1px 1px rgba(182,135,0,0.7);
+  box-shadow: 0 -1px 2px rgba(255,255,255,0.4), 0 1px 2px rgba(255,255,255,0.6), inset 0 1px 1px rgba(182,135,0,0.7);
+}
+#browse:hover {
+  background: rgba(182,135,0,0.3);
+  -webkit-box-shadow: 0 -1px 2px rgba(255,255,255,0.4), 0 1px 2px rgba(255,255,255,0.6), inset 0 2px 2px #b68700, inset 0 0 3px #f2b400;
+  box-shadow: 0 -1px 2px rgba(255,255,255,0.4), 0 1px 2px rgba(255,255,255,0.6), inset 0 2px 2px #b68700, inset 0 0 3px #f2b400;
 }
 .table-container {
   min-height: 30px;
@@ -163,6 +176,8 @@ p.preview span {
 .table-container table.table tr th {
   font-weight: 300;
   font-size: 24px;
+  padding-top: 12px;
+  padding-bottom: 20px;
 }
 .table-container table.table tr td {
   border-top: none;
