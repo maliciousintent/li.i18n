@@ -7,7 +7,12 @@ $(function () {
     var $table = $('#table').show();
     
     Object.keys(data).forEach(function (ctx) {
-      $('<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(ctx, data[ctx].original, data[ctx].translated, data[ctx].fuzzy)).appendTo($table);
+      $(('<tr>' + 
+          '<td class="span2">{0}</td>' + 
+          '<td class="span4"><textarea readonly="readonly">{1}</textarea></td>' + 
+          '<td class="span4"><textarea class="translation" data-ctx="{0}">{2}</textarea></td>' + 
+          '<td class="span2"><input id="fuz-{4}" type="checkbox" value="{3}" /> <label for="fuz-{4}">Fuzzy</label></td>' + 
+         '</tr>').format(ctx, data[ctx].original, data[ctx].translated, data[ctx].fuzzy, parseInt(Math.random() * 10000, 10))).appendTo($table);
     });
     
   };
