@@ -44,17 +44,23 @@ head
           p.center
             | To begin, choose a file to translate from your computer:
             br
-            input(type='file') 
-            button.btn.btn-primary Begin translation &raquo;
+            input#file(type='file') 
               
+      //- Hidden, show only after a file has been uploaded
+      .row-fuild
+        .span12
+          table#table(style='display:none;')
+
 
       hr
       footer
         p.center &copy; 2013 
           a(href='http://www.plasticpanda.com/') plasticpanda.com 
           | | 
+          a(href='https://github.com/PlasticPanda/li.i18n/issues') bugs 
+          | | 
           a(href='https://github.com/PlasticPanda/li.i18n') source code
 
-    script(src='../assets/js/jquery.js')
-    script(src='../assets/js/bootstrap.js')
-    script(src='../assets/js/app.js')
+    script(src='js/jquery.js')
+    script(src='js/bootstrap.js')
+    script(src='js/app.js')
