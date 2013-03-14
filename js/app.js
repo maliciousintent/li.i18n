@@ -1,11 +1,15 @@
 /*jshint browser:true, indent:2, laxcomma:true, jquery:true, devel:true */
 
 $(function () {
-  var json;
+ 
   
-  
-  var _createTable = function (json) {
+  var _createTable = function (data) {
     var $table = $('#table').show();
+    
+    Object.keys(data).forEach(function (ctx) {
+      $('<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(ctx, data[ctx].original, data[ctx].translated, data[ctx].fuzzy)).appendTo($table);
+    });
+    
   };
   
   
@@ -19,8 +23,11 @@ $(function () {
     
     var reader = new FileReader();
     reader.addEventListener('load', function (e) {
+      var json;
+      
       try {
         json = JSON.parse(e.target.result);
+        _createTable(json);
       } catch (err) {
         alert('The file you uploaded is not valid (technical details: JSON decode error)');
         throw err;
