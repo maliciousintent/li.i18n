@@ -29,44 +29,32 @@ html(lang='en')
               | Upload and translate JSON Locale files. 
               a() Wut?
 
-    .container-fluid
+    .container
       .row-fluid
         .span12
-          .header.center
-            
-            img(src='img/logo.jpg')
-            
-            h1 Hello, human
-            p.lead
-              | From this page you can upload and translate 
-              a(href='https://github.com/PlasticPanda/jade-i18n.js#jade-i18njs---static-i18-d-website-generator') jade-i18n.js
-              | -compatible JSON Locale files.
-      
-      .row-fluid
-        .span12
-          p
-
+          h3 Start here
           p.center
-            | To begin, choose a file to translate from your computer:
-            br
-            input#file(type='file', accept='application/json') 
-              
+            | To begin, choose a file to translate from your computer: 
+            a#browse.btn.pull-right Browse...
+          input#file.hide(type='file', accept='application/json')
+
+    .container-fluid    
       //- Hidden, show only after a file has been uploaded
-      .row-fuild
-        .span12
-          table#table(style='display:none;')
+      .row-fluid
+        table#table.table(style='display:none;')
 
-
+    .container-fluid
       hr
       footer
-        p.center &copy; 2013 
+        p.tc &copy; 2013 
           a(href='http://www.plasticpanda.com/') plasticpanda.com 
-          | | 
+          | &middot; 
           a(href='https://github.com/PlasticPanda/li.i18n/issues') bugs 
-          | | 
+          | &middot; 
           a(href='https://github.com/PlasticPanda/li.i18n') source code
 
     script(src='js/jquery.js')
     script(src='js/bootstrap.js')
+    script(src='js/objectstorage.js')
     script(src='js/string-format.js')
     script(src='js/app.js')
