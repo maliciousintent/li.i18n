@@ -48,8 +48,9 @@ html(lang='en')
             tbody
               // eeh, vediamo un poco
 
-          button.btn.btn-large() Save
-          button.btn.btn-large.btn-primary() Download
+          button#saveBtn.btn.btn-large() Save
+          #downloadBtn
+            | You need Flash Player 10 to download this file, sorry.
 
     .container-fluid
       footer
@@ -66,4 +67,6 @@ html(lang='en')
     script(src='js/objectstorage.js')
     script(src='js/string-format.js')
     script(src='js/sugar.js')
+    script(src='js/swfobject.js')
+    script(src='js/downloadify.js')
     script(src='js/app.js')

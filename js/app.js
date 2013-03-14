@@ -1,25 +1,12 @@
 /*jshint browser:true, indent:2, laxcomma:true, eqnull:true, jquery:true, devel:true */
+/*global Downloadify */
 
 $(function () {
   var $table = $('#table');
   
-  document.getElementById('browse').addEventListener('click', function () {
-    document.getElementById('file').click();
-    return false;
-  });
   
+  // -~- Internals -~-
   
-  // // Quick unfuzzy
-  // $table.find('#fuzzyTh').on('click', function () {
-  //   $table.find('.fuzzy-checkbox').each(function (i, e) {
-  //     e = $(e);
-  //     if (e.is(':checked')) {
-  //       e.trigger('click');
-  //     }
-  //   });
-  // });
-
-
   var _createTable = function (data) {
     var tabindex = 100;
     
@@ -63,23 +50,7 @@ $(function () {
       append: '\n'
     });
   };
-  
-  
-  var _getTable = function () {
-    var translations = {};
     
-    $table.find('.translation[data-ctx]').each(function (index, item) {
-      var $item = $(item);
-      translations[$item.attr('data-ctx')] = {
-        original: $item.attr('data-original'),
-        translated: $item.val(),
-        fuzzy: $item.attr('data-fuzzy') == 'true'
-      };
-    });
-    
-    return translations;
-  };
-  
   
   var _handleFileSelect = function (evt) {
     var file = evt.target.files[0];
@@ -104,10 +75,78 @@ $(function () {
     
     reader.readAsText(file);
   };
-
+  
+  
+  var _getTable = function () {
+    var translations = {};
+    
+    $table.find('.translation[data-ctx]').each(function (index, item) {
+      var $item = $(item);
+      translations[$item.attr('data-ctx')] = {
+        original: $item.attr('data-original'),
+        translated: $item.val(),
+        fuzzy: $item.attr('data-fuzzy') == 'true'
+      };
+    });
+    
+    return translations;
+  };
+  
+  
+  // -~- Event Listeners -~-
+  
   $('#file')[0].addEventListener('change', _handleFileSelect, false);
   
+  $('#browse').on('click', function () {
+    document.getElementById('file').click();
+    return false;
+  });
+  
+  $('#saveBtn').on('click', function (e) {
+    var $this = $(e.target);
+    $this.attr('disabled', 'disabled');
+    
+    window.localStorage.setObject('trans', _getTable());
+    
+    setTimeout(function () {
+      $this.removeAttr('disabled'); // Si, mi permetto di usare $this comunuqe!
+    }, 2000);
+  });
+  
+  
+  // // Quick unfuzzy
+  // $table.find('#fuzzyTh').on('click', function () {
+  //   $table.find('.fuzzy-checkbox').each(function (i, e) {
+  //     e = $(e);
+  //     if (e.is(':checked')) {
+  //       e.trigger('click');
+  //     }
+  //   });
+  // });
 
+
+  // -~- Downloadify -~-
+  Downloadify.create('downloadBtn', {
+    filename: function () {
+      return 'translated.json';
+    },
+    data: function () { 
+      return _getTable();
+    },
+    onComplete: function () { alert('Congratulations! Your file has been saved.'); },
+    onCancel: function () { },
+    onError: function () { alert('Sorry, we could not download your file. Try again.'); },
+    swf: 'js/downloadify.swf',
+    downloadImage: 'img/download.png',
+    width: 100,
+    height: 30,
+    transparent: true,
+    append: false
+  });
+
+  
+  // -~- Save user's life -~-
+  
   // Restore last save
   var saved = window.localStorage.getObject('trans');
   if (saved != null && !Object.equal(saved, {})) {
@@ -118,11 +157,12 @@ $(function () {
     }
   }
 
+  // Prevent "accidental" page refresh
   window.onbeforeunload = function () {
     return null; // @TODO: @FIXME: Uncomment - 'If you close this page all your changes will be lost. Continue?';
   };
 
-  // Auto save
+  // Auto save every 10s
   (function autoSave() {
     if ($table.is(':visible')) {
       window.localStorage.setObject('trans', _getTable());
