@@ -26,7 +26,10 @@ $(function () {
     });
     
     $('.translation', $table).on('change', function removeFuzzy(e) {
-      $(e.target).parent('td').next().find('input[type="checkbox"]').trigger('click');
+      var $check = $(e.target).parent('td').next().find('input[type="checkbox"]');
+      if ($check.is(':checked')) {
+        $check.trigger('click');
+      }
     });
     
     $('input[type="checkbox"]', $table).on('change', function toggleFuzzy(e) {
