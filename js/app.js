@@ -20,7 +20,7 @@ $(function () {
           '<td class="span1">{0}</td>' + 
           '<td class="span5"><p class="original">{1}</p></td>' + 
           '<td class="span5"><textarea tabindex="{5}" class="translation input-block-level" data-ctx="{0}" data-original="{1}" data-fuzzy="{3}">{2}</textarea></td>' + 
-          '<td class="span1"><label class="checkbox"><input class="fuzzy-checkbox" type="checkbox" value="true" {4} /></label></td>' + 
+          '<td class="span1 fuzzy-td"><label class="checkbox"><input class="fuzzy-checkbox" type="checkbox" value="true" {4} /></label></td>' + 
          '</tr>').format(ctx.spacify().capitalize(true), data[ctx].original, data[ctx].translated, data[ctx].fuzzy, fuzzyChecked, tabindex)).appendTo($table.find('tbody'));
       tabindex++;
     });
@@ -42,6 +42,10 @@ $(function () {
       } else {
         $this.closest('tr').removeClass('fuzzy-true');
       }
+    });
+    
+    $('td.fuzzy-td', $table).on('click', function propagateClick(e) {
+      $(e.target).find('input[type="checkbox"]').trigger('click');
     });
 
     $('html, body').animate({
