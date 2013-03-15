@@ -209,6 +209,11 @@ p.preview span {
   border-top: none;
   border-bottom: 1px solid #ddd;
   padding: 15px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 .table-container table.table tr td:first-child {
   font-weight: 700;
