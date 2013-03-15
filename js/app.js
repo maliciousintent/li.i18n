@@ -26,10 +26,12 @@ $(function () {
     });
     
     $('.translation', $table).on('change', function removeFuzzy(e) {
-      var $check = $(e.target).parent('td').next().find('input[type="checkbox"]');
-      if ($check.is(':checked')) {
-        $check.trigger('click');
-      }
+      setTimeout(function () {
+        var $check = $(e.target).parent('td').next().find('input[type="checkbox"]');
+        if ($check.is(':checked')) {
+          $check.trigger('click');
+        }
+      }, 200);
     });
     
     $('input[type="checkbox"]', $table).on('change', function toggleFuzzy(e) {
