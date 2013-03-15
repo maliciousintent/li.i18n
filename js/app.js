@@ -137,9 +137,9 @@ $(function () {
     onCancel: function () { },
     onError: function () { alert('Sorry, we could not download your file. Try again.'); },
     swf: 'js/downloadify.swf',
-    downloadImage: 'img/download.png',
+    downloadImage: 'img/save-button.png',
     width: 100,
-    height: 30,
+    height: 46,
     transparent: true,
     append: false
   });

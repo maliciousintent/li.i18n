@@ -48,17 +48,23 @@ html(lang='en')
             tbody
               // eeh, vediamo un poco
 
-          p
+    .container.table-hidden(style='display:none;')
+      .row-fluid
+        .span6.tr
+          p(style='margin-top: 11px;')
             | Last Autosave 
             span#autoSaveDetails never
             | .
 
+        .span6
           //- Non si capisce che salva nel browser...
-          button#saveBtn.btn.btn-large() Save
-          #downloadBtn
-            | You need Flash Player 10 to download this file, sorry.
+          .save-container
+            //-button#saveBtn.btn.btn-large() Save
+            div#downloadBtn
+              | You need Flash Player 10 to download this file, sorry.
 
     .container-fluid
+      hr.table-hidden(style='display:none;')
       footer
         p.tc &copy; 2013 
           a(href='http://www.plasticpanda.com/') plasticpanda.com
