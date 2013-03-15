@@ -37,14 +37,15 @@ html(lang='en')
         .table-hidden(style='display:none;')
           table#table.table
             thead
-              th.span1
-                | Context
-              th.span5
-                | Original Text
-              th.span5
-                | Translated Text
-              th#fuzzyTh.span1
-                | Fuzzy?
+              tr
+                th.span1
+                  | Context
+                th.span5
+                  | Original Text
+                th.span5
+                  | Translated Text
+                th#fuzzyTh.span1
+                  | Fuzzy?
             tbody
               // eeh, vediamo un poco
 
@@ -52,7 +53,7 @@ html(lang='en')
       .row-fluid
         .span6.tr
           p(style='margin-top: 11px;')
-            | Last Autosave 
+            | Last autosave 
             span#autoSaveDetails never
 
         .span6
