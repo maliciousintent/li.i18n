@@ -88,7 +88,7 @@ $(function () {
     
     $table.find('.translation[data-ctx]').each(function (index, item) {
       var $item = $(item);
-      translations[$item.attr('data-ctx')] = {
+      translations[$item.attr('data-ctx').toUpperCase()] = {
         original: $item.attr('data-original'),
         translated: $item.val(),
         fuzzy: $item.attr('data-fuzzy') == 'true'
