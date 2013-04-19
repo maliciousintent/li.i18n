@@ -91,7 +91,7 @@ $(function () {
       translations[$item.attr('data-ctx').toUpperCase()] = {
         original: $item.attr('data-original'),
         translated: $item.val(),
-        fuzzy: $item.attr('data-fuzzy') == 'true'
+        fuzzy: $item.hasClass('fuzzy-true')
       };
     });
     
