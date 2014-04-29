@@ -1,3 +1,16 @@
+table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+pre, p.original {
+    width: 150px !important;
+}
+
+textarea {
+    width: 500px !important;
+}
+
 @import url("http://fonts.googleapis.com/css?family=Patrick+Hand+SC");
 @font-face {
   font-family: 'Colaborate';
