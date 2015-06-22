@@ -137,7 +137,7 @@ $(function () {
       return 'translated.json';
     },
     data: function () { 
-      return JSON.stringify(_getTable());
+      return JSON.stringify(_getTable(), null, 2);
     },
     onComplete: function () { alert('Congratulations! Your file has been saved.'); },
     onCancel: function () { },
